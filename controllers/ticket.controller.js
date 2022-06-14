@@ -110,7 +110,7 @@ exports.updateTicket = async (req, res) => {
             sendEmail(ticket._id,"Ticket with id: " +ticket._id +" updated",ticket.description, savedUser.email + "," + engineer.email+ "," + reporter.email,savedUser.email);
         }
         catch(e){
-
+            console.log(e)
         }
 
 

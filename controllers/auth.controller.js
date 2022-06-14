@@ -92,7 +92,7 @@ exports.oauthsignin = async (req, res)=> {
     }
     //Exchange Access code for access token and validate
     var token = jwt.sign({ id: user.userId }, config.secret, {
-        expiresIn: 120 // 2 minutes
+        expiresIn: 3600 // 2 minutes
       });
     res.status(200).send({
         name : user.name,
@@ -136,7 +136,7 @@ exports.signin = async (req, res)=> {
         });
       }
       var token = jwt.sign({ id: user.userId }, config.secret, {
-        expiresIn: 120 // 2 minutes
+        expiresIn: 3600 // 2 minutes
       });
 
       res.status(200).send({
