@@ -65,7 +65,6 @@ async function init() {
             password :bcrypt.hashSync("Welcome1", 8) //this field should be hidden from the end user
 
         });
-        console.log(user);
 
     } catch (e) {
         console.log(e.message);

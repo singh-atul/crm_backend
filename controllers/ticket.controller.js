@@ -50,8 +50,14 @@ exports.createTicket = async (req, res) => {
             /**
              * Sending the notification to the assigned Engineer in asynchronous manner
              */
-            sendEmail(ticket._id,"Ticket with id: " +ticket._id +" created",ticket.description, user.email + "," + engineer.email,user.email);
+            try{
 
+                sendEmail(ticket._id,"Ticket with id: " +ticket._id +" created",ticket.description, user.email + "," + engineer.email,user.email);
+
+            }
+            catch(e){
+                console.log("Failed to send mail")
+            }
 
             res.status(201).send(objectConvertor.ticketResponse(ticket));
         }
@@ -100,7 +106,13 @@ exports.updateTicket = async (req, res) => {
         /**
          * Sending the notification for ticket updation
          */
-        sendEmail(ticket._id,"Ticket with id: " +ticket._id +" updated",ticket.description, savedUser.email + "," + engineer.email+ "," + reporter.email,savedUser.email);
+        try{
+            sendEmail(ticket._id,"Ticket with id: " +ticket._id +" updated",ticket.description, savedUser.email + "," + engineer.email+ "," + reporter.email,savedUser.email);
+        }
+        catch(e){
+
+        }
+
 
         res.status(200).send(objectConvertor.ticketResponse(updatedTicket));
     } else {
