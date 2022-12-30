@@ -48,28 +48,29 @@ mongoose.connect(dbConfig.DB_URL);
 async function init() {
 
 
-    var user = await User.findOne({ userId: "admin" });
+    // var user = await User.findOne({ userId: "admin" });
 
-    if (user) {
-         console.log("Admin user already present");
-        return;
-    }
+    // if (user) {
+    //      console.log("Admin user already present");
+    //     return;
+    // }
 
-    try {
+    // try {
 
-        user = await User.create({
-            name: "Vishwa",
-            userId: "admin", // It should be atleat 16, else will throw error
-            email: "Kankvish@gmail.com",  // If we don't pass this, it will throw the error
-            userType: "ADMIN",
-            password :bcrypt.hashSync("Welcome1", 8) //this field should be hidden from the end user
+    //     user = await User.create({
+    //         name: "Atul",
+    //         userId: "admin6", // It should be atleat 16, else will throw error
+    //         email: "atul07516@gmail.com",  // If we don't pass this, it will throw the error
+    //         userType: "ADMIN",
+    //         password :bcrypt.hashSync("Welcome1", 8) //this field should be hidden from the end user
 
-        });
-        console.log(user);
+    //     });
+    //     console.log(user);
 
-    } catch (e) {
-        console.log(e.message);
-    }
+    // } catch (e) {
+    //     console.log('1')
+    //     console.log(e.message);
+    // }
 
 }
 

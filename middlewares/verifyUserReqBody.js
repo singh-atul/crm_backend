@@ -24,7 +24,6 @@ validateUserRequestBody = async (req, res, next) => {
     //Validating the userId 
     const user = await User.findOne({ userId: req.body.userId });
     if (user != null) {
-        console.log("Inside this");
         res.status(400).send({
             message: "Failed! Userid  already exists!"
         });
