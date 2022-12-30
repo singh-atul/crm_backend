@@ -56,19 +56,7 @@ exports.signup = async (req, res) => {
  * Controller for the sign in flow
  */
 
-/*
-request type:
-{
-  nickname: 'xyz122',
-  name: 'xyz122@gmail.com',
-  picture: 'https://s.gravatar.com/avatar/70e12f0367a7834a7358f81e0e262310?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fxy.png',
-  updated_at: '2022-04-25T19:52:26.375Z',
-  email: 'xyz122@gmail.com',
-  email_verified: false,
-  sub: 'auth0|6266edd18aeb52006fc0d153',
-  code: 'CtKbKLCQn18VXQMiyzvxhdvmf6C5nbI5zrkxJpAR9ksvX'
-}
-*/
+
 exports.oauthsignin = async (req, res)=> {
     let user = await User.findOne({ userId: req.body.nickname });
     if (user == null){
@@ -92,7 +80,7 @@ exports.oauthsignin = async (req, res)=> {
     }
     //Exchange Access code for access token and validate
     var token = jwt.sign({ id: user.userId }, config.secret, {
-        expiresIn: 120 // 2 minutes
+        expiresIn: 3600 // 2 minutes
       });
     res.status(200).send({
         name : user.name,
@@ -136,7 +124,7 @@ exports.signin = async (req, res)=> {
         });
       }
       var token = jwt.sign({ id: user.userId }, config.secret, {
-        expiresIn: 120 // 2 minutes
+        expiresIn: 3600 // 2 minutes
       });
 
       res.status(200).send({
